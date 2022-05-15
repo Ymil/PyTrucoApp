@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "TrucoApp",
+    "slug": "TrucoApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
