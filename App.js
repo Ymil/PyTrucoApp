@@ -266,6 +266,7 @@ const App = () => {
 					}else{
 						setTurn(false);
 					}
+					break;
 				case 'msg':
 					setMsg(msg + "\n" + input_data["payload"]);
 					break;
