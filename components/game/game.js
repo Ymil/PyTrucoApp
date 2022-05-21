@@ -8,7 +8,7 @@ import EnvidoButtonsGroup from './envidoButtonsGroup';
 import TableGame from './tableGame';
 import ServerContext from '../../utils/serverContext';
 
-const Game = ({ route, navigation }) => {
+const GameScreen = () => {
 	const [server] = useContext(ServerContext);
 	const socket = server.socket;
 	const [turn, setTurn] = useState(false);
@@ -169,4 +169,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Game;
+export default GameScreen;
