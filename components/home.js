@@ -7,7 +7,7 @@ import { Cell, Row, Table, TableWrapper } from 'react-native-table-component';
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
 	const [server, setServer] = useContext(ServerContext);
 
 	const [command, setCommand] = useState("{\"action\": \"\", \"payload\": \"\"}");
