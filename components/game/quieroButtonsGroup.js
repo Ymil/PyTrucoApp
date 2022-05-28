@@ -7,11 +7,11 @@ const QuieroButtonsGroup = ({enable}) => {
 	const socket = server.socket;
 
 	const quiero = () => {
-		socket.send("quiero,1");
+		socket.send("quiero");
 	}
 
 	const noQuiero = () => {
-		socket.send("quiero,0");
+		socket.send("no_quiero");
 	}
 
 	return (

@@ -5,15 +5,15 @@ const TrucoButtonsGroup = ({enable}) => {
     const [server] = useContext(ServerContext);
 	const socket = server.socket;
 	const truco = () => {
-		socket.send("truco,0");
+		socket.send("truco");
 	}
 
 	const retruco = () => {
-		socket.send("retruco,0");
+		socket.send("re_truco");
 	}
 
 	const vale_4 = () => {
-		socket.send("vale_4,0");
+		socket.send("vale_4");
 	}
 	return (
 		<View style={{ flexDirection: "row", justifyContent: 'space-around', padding: 25 }}>

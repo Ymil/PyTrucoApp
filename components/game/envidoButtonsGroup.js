@@ -6,11 +6,11 @@ const EnvidoButtonsGroup = ({enable}) => {
 	const [server] = useContext(ServerContext);
 	const socket = server.socket;
 	const envido = () => {
-		socket.send("envido,0");
+		socket.send("envido");
 	}
 
 	const real_envido = () => {
-		socket.send("real_envido,0");
+		socket.send("real_envido");
 	}
 
 	return (
