@@ -7,11 +7,17 @@ import TrucoButtonsGroup from './trucoButtonsGroup';
 import EnvidoButtonsGroup from './envidoButtonsGroup';
 import TableGame from './tableGame';
 import ServerContext from '../../utils/serverContext';
+import { ScrollView } from 'react-native-web';
 
 const GameScreen = () => {
 	const [server] = useContext(ServerContext);
 	const socket = server.socket;
-	const [turn, setTurn] = useState(false);
+	const [availableActions, setAvailablesActions] = useState([
+
+	]);
+	const [turn, setTurn] = useState([
+		false
+	]);
 	const [command, setCommand] = useState("{\"action\": \"\", \"payload\": \"\"}");
 	const [playerConfig, setPlayerConfig] = useState({
 		"playerid": NaN,
@@ -89,12 +95,14 @@ const GameScreen = () => {
 				case "set_turn_player":
 					if (playerConfig.playerid == payload.player && playerConfig.teamid == payload.team) {
 						setTurn(true);
+						setAvailablesActions(payload.actions);
 					} else {
 						setTurn(false);
+						setAvailablesActions([]);
 					}
 					break;
 				case 'msg':
-					setMsg(msg + "\n" + input_data["payload"]);
+					setMsg(input_data["payload"] + "\n" + msg);
 					break;
 				case 'start_new_round':
 					reset();
@@ -124,13 +132,15 @@ const GameScreen = () => {
 			</View>
 			<TableGame history={history} points={points} />
 			<MyCards cards={cards} enable={turn} />
-			<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-				<Text>Ultima jugada: {msg}</Text>
-			</View>
+			<ScrollView style={styles.scrollView}>
+				<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+					<Text>{msg}</Text>
+				</View>
+			</ScrollView>
 
-			<QuieroButtonsGroup enable={turn} />
-			<EnvidoButtonsGroup enable={turn} />
-			<TrucoButtonsGroup enable={turn} />
+			<QuieroButtonsGroup availableActions={availableActions} />
+			<EnvidoButtonsGroup availableActions={availableActions} />
+			<TrucoButtonsGroup availableActions={availableActions} />
 		</SafeAreaView >
 	);
 }
@@ -167,6 +177,9 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 32,
 	},
+	scrollView: {
+		paddingVertical: 20
+	}
 });
 
 export default GameScreen;

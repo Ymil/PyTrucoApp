@@ -9,9 +9,11 @@ const CardButton = ({index, card, enable}) => {
 	const [cartaJugada, setCartaJugada] = useState(false);
 	
 	const JugarCarta = (index) => {
-		console.log('jugar_carta,' + index);
-		socket.send('jugar_carta,' + index);
-		if(enable) setCartaJugada(true);
+		if(enable){
+			setCartaJugada(true);
+			console.log('jugar_carta,' + index);
+			socket.send('jugar_carta,' + index);
+		}
 	}
 
 	return (
